@@ -16,10 +16,12 @@ public class Exercio01 {
 
         double valorConta = 50.0;
         if (minutos > 100) {
-            valorConta = valorConta + (minutos -100) * 2;
+            valorConta += (minutos - 100) * 2;
         }
+
         System.out.printf("Valor da conta = R$ %.2f%n", valorConta);
 
+        scanner.close();
 
 
     }
