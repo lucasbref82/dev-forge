@@ -2,7 +2,7 @@ package sequencial;
 
 import java.util.Locale;
 
-public class Exercicio1 {
+public class Exercicio01 {
     public static void main(String[] args) {
 
         String produto1 = "Computador";
