@@ -1,4 +1,4 @@
-package repetitivas;
+package repetitivas.enquanto;
 
 import java.util.Scanner;
 

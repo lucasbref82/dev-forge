@@ -1,4 +1,4 @@
-package repetitivas;
+package repetitivas.enquanto;
 
 public class Imprimir {
     public static void main(String[] args) {
