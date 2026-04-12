@@ -3,6 +3,11 @@ package arrays;
 import java.util.Scanner;
 
 public class InverteArray {
+
+    /*
+        Crie um programa que leia 5 números inteiros, armazene em um vetor e exiba todos na ordem inversa.
+    */
+
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         int[] numeros = new int[5];
