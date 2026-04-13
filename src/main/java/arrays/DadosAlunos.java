@@ -1,84 +1,100 @@
 package arrays;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class DadosAlunos {
+
+    private static final String APROVADO = "Aprovado";
+    private static final String RECUPERACAO = "Recuperacão";
+    private static final String REPROVADO = "Reprovado";
+
     public static void main(String[] args) {
+        Locale.setDefault(Locale.US);
         Scanner entrada = new Scanner(System.in);
 
         System.out.print("Quantidade de alunos (2-10): ");
         int quantidadeAlunos = entrada.nextInt();
+
+        if (quantidadeAlunos < 2 || quantidadeAlunos > 10) {
+            System.err.println("A quantidade de alunos deve ser maior que dois e menor que dez.");
+        }
+
         System.out.println();
 
         String[] alunos = new String[quantidadeAlunos];
-        int[] notasAluno1 = new int[3];
-        int[] notasAluno2 = new int[3];
-        int[] notasAluno3 = new int[3];
+        double[] medias = new double[quantidadeAlunos];
+        double somaMedias = 0;
 
-        double totalNotaAluno1 = 0;
-        double totalNotaAluno2 = 0;
-        double totalNotaAluno3 = 0;
+        double maiorMedia = Double.MIN_VALUE;
+        double menorMedia = Double.MAX_VALUE;
+        String alunoMaiorMedia = null;
+        String alunoMenorMedia = null;
 
-        for (int i = 0; i < notasAluno1.length; i++) {
-            if (i == 0) {
-                System.out.println("Aluno 1:");
-                System.out.print("Nome: ");
-                entrada.next();
-                alunos[i] = entrada.nextLine();
+        for (int i = 0; i < alunos.length; i++) {
+            System.out.println("Aluno " + (i + 1) + ": ");
+            System.out.print("Nome: ");
+            entrada.nextLine();
+            alunos[i] = entrada.nextLine();
+            System.out.print("Nota 1: ");
+            double nota1 = entrada.nextDouble();
+            System.out.print("Nota 2: ");
+            double nota2 = entrada.nextDouble();
+            System.out.print("Nota 3: ");
+            double nota3 = entrada.nextDouble();
+            medias[i] = (nota1 + nota2 + nota3) / 3;
+            somaMedias += medias[i];
+            if (medias[i] > maiorMedia) {
+                maiorMedia = medias[i];
+                alunoMaiorMedia = alunos[i];
             }
-            System.out.print("Nota " + (i + 1) + ": ");
-            notasAluno1[i] = entrada.nextInt();
-            totalNotaAluno1 += notasAluno1[i];
+            if (medias[i] < menorMedia) {
+                menorMedia = medias[i];
+                alunoMenorMedia = alunos[i];
+            }
+            System.out.println();
         }
 
-        System.out.println("Aluno 2:");
-        for (int i = 0; i < notasAluno2.length; i++) {
-            if (i == 0) {
-                System.out.print("Nome: ");
-                alunos[i] = entrada.nextLine();
+        double mediaGeral = somaMedias / medias.length;
+        int quantidadeAprovado = 0;
+        int quantidadeRecuperacao = 0;
+        int quantidadeReprovado = 0;
+
+        System.out.println("--- Resultado ---");
+        for (int i = 0; i < alunos.length; i++) {
+            String situacaoAluno = calculaResultadoAluno(medias[i]);
+            if (situacaoAluno.equals(APROVADO)) {
+                quantidadeAprovado += 1;
+            } else if (situacaoAluno.equals(RECUPERACAO)) {
+                quantidadeRecuperacao += 1;
+            } else {
+                quantidadeReprovado += 1;
             }
-            System.out.print("Nota " + (i + 1) + ": ");
-            notasAluno2[i] = entrada.nextInt();
-            totalNotaAluno2 += notasAluno2[i];
+            System.out.printf("%s      | Média: %.2f | %s%n", alunos[i], medias[i], situacaoAluno);
         }
-
-        System.out.println("Aluno 3: ");
-        for (int i = 0; i < notasAluno3.length; i++) {
-            if (i == 0) {
-                System.out.print("Nome: ");
-                alunos[i] = entrada.nextLine();
-            }
-            System.out.print("Nota " + (i + 1) + ": ");
-            notasAluno3[i] = entrada.nextInt();
-            totalNotaAluno3 += notasAluno3[i];
-        }
-        double mediaAluno1 = totalNotaAluno1 / notasAluno1.length;
-        String resultadoAluno1 = calculaResultadoAluno(mediaAluno1);
-
-        double mediaAluno2 = totalNotaAluno2 / notasAluno2.length;
-        String resultadoAluno2 = calculaResultadoAluno(mediaAluno1);
-
-        double mediaAluno3 = totalNotaAluno3 / notasAluno3.length;
-        String resultadoAluno3 = calculaResultadoAluno(mediaAluno3);
 
         System.out.println();
-        System.out.println("--- Resultado ---");
-        System.out.printf("Ana      | Média %.1f | %s%n", mediaAluno1, resultadoAluno1);
-        System.out.printf("Bob      | Média %.1f | %s%n", mediaAluno2, resultadoAluno2);
-        System.out.printf("Lia      | Média %.1f | %s%n", mediaAluno3, resultadoAluno3);
+
+        System.out.printf("Maior média: %s (%.1f)%n", alunoMaiorMedia, maiorMedia);
+        System.out.printf("Menor média: %s (%.1f)%n", alunoMenorMedia, menorMedia);
+        System.out.printf("Média geral: %.1f%n", mediaGeral);
+
+        System.out.println();
+
+        System.out.printf("Aprovados: %d%n", quantidadeAprovado);
+        System.out.printf("Recuperação: %d%n", quantidadeRecuperacao);
+        System.out.printf("Reprovaodos: %d%n", quantidadeReprovado);
 
         entrada.close();
     }
 
     private static String calculaResultadoAluno(double media) {
-        String resultado;
         if (media >= 7) {
-            resultado = "Aprovado";
+            return APROVADO;
         } else if (media >= 5) {
-            resultado = "Recuperação";
+            return RECUPERACAO;
         } else {
-            resultado = "Reprovado";
+            return REPROVADO;
         }
-        return resultado;
     }
 }
