@@ -1,6 +1,7 @@
 package objetos.introducao.medio.entidades;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Funcionario {
@@ -58,6 +59,6 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return nome +" - " + cargo + "R$ 3000.00" ;
+        return nome + " - " + cargo + " - R$ " + salario.setScale(2, RoundingMode.HALF_EVEN);
     }
 }
