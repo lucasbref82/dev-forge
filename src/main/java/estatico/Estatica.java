@@ -6,9 +6,9 @@ public class Estatica {
         throw new UnsupportedOperationException("Classe não pode ser instânciada");
     }
 
-    private static int valor = 4;
+    private static final int VALOR = 4;
 
     public static int retornaValor() {
-        return valor;
+        return VALOR;
     }
 }
