@@ -2,7 +2,7 @@ package exercicio_sequencial;
 
 import java.util.Scanner;
 
-public class ExercicioIntermediario01 {
+public class ExercicioIntermediario1 {
 
     /*
         Leia três notas de um aluno e a frequência (%). Aprovado se média >= 6 e frequência >= 75%.

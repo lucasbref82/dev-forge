@@ -3,7 +3,7 @@
     import java.util.List;
     import java.util.Scanner;
 
-    public class Intermediario03 {
+    public class ExercicioItermediario3 {
         /*
         2.3) Leia dois números e um operador (+, -, *, /) como texto, e use SWITCH para realizar a operação correspondente, tratando divisão por zero.
         */
@@ -24,7 +24,7 @@
 
             System.out.print("Digite o operador (+, -, *, /): ");
             String operador = scanner.nextLine();
-
+    
 
             while (!operadoresValidos.contains(operador)) {
                 System.out.print("Digite um operador válido (+, -, *, /): ");

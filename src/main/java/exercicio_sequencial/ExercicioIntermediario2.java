@@ -2,7 +2,7 @@
 
     import java.util.Scanner;
 
-    public class ExercicioIntermediario02 {
+    public class ExercicioIntermediario2 {
 
         /*
             2.2) Leia mês (1-12) e use SWITCH para exibir o nome do mês por extenso, com um default tratando entrada inválida.
