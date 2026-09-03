@@ -1,4 +1,4 @@
-    package exercicio_sequencial;
+    package exercicio.sequencial;
 
     import java.util.List;
     import java.util.Scanner;
