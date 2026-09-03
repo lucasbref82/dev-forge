@@ -10,7 +10,6 @@ import java.util.Scanner;
     e ano bissexto
     (divisível por 4, exceto séculos não divisíveis por 400).
 
-    Use IF/ELSE aninhados com operadores lógicos.
  */
 public class ExercicioAvancado1 {
 
